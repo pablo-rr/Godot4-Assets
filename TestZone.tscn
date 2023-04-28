@@ -1,4 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://4wv68rh8t40f"]
+[gd_scene load_steps=4 format=3 uid="uid://4wv68rh8t40f"]
+
+[ext_resource type="Texture2D" uid="uid://c2rrjhfpooy3f" path="res://Addons/MorphineGamesIntro/Sprites/Controller.png" id="1_5ngvs"]
+[ext_resource type="Script" path="res://Addons/ObjectPooler/ObjectPooler.gd" id="2_5ewo2"]
 
 [sub_resource type="GDScript" id="GDScript_cglpv"]
 script/source = "extends Node2D
@@ -6,12 +9,8 @@ script/source = "extends Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	var sf = ConfigurationFile.new()
-	print(sf.fullscreen)
-	var sr = SaveSystem.save_config(sf, false)
-	print(sr)
-	var lg = SaveSystem.load_config(false)
-	print(lg.fullscreen)
+	await(get_tree().create_timer(1.0).timeout)
+	SceneTransitioner.transition_to_scene(\"res://TestZone.tscn\", 1)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -20,3 +19,10 @@ func _process(delta: float) -> void:
 
 [node name="Node2D" type="Node2D"]
 script = SubResource("GDScript_cglpv")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(640, 475)
+texture = ExtResource("1_5ngvs")
+
+[node name="ObjectPooler" type="Node" parent="."]
+script = ExtResource("2_5ewo2")

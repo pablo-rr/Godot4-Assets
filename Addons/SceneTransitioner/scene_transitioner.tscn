@@ -1,0 +1,74 @@
+[gd_scene load_steps=2 format=3 uid="uid://oiv07defqlk7"]
+
+[sub_resource type="GDScript" id="GDScript_avhkv"]
+script/source = "extends Control
+
+enum Transitions{
+	FADE_IN = 0
+	,FADE_OUT = 1
+}
+
+func transition_to_scene(scene_path : String, time : float = 0.6) -> void:
+	visible = true
+	var tween : Tween = get_tree().create_tween()
+	$ColorRect.modulate = Color(1, 1, 1, 0)
+	tween.tween_property($ColorRect, \"modulate\", Color(1, 1, 1, 1), time)
+	tween.set_ease(Tween.EASE_OUT_IN)
+	tween.set_trans(Tween.TRANS_LINEAR)
+	tween.finished.connect(Callable(func(): transition_fade_in(scene_path, time)))
+
+func transition_fade_in(scene_path : String, time : float) -> void:
+	await(get_tree().create_timer(0.35).timeout)
+	get_tree().change_scene_to_file(scene_path)
+	var tween : Tween = get_tree().create_tween()
+	$ColorRect.modulate = Color(1, 1, 1, 1)
+	tween.tween_property($ColorRect, \"modulate\", Color(1, 1, 1, 0), time)
+	tween.set_ease(Tween.EASE_OUT_IN)
+	tween.set_trans(Tween.TRANS_LINEAR)
+	tween.finished.connect(Callable(func(): transition_over()))
+	
+func transition_over() -> void:
+	visible = false
+
+#func transition_to_scene(scene_path : String, transition : int, time : float = 0.6) -> void:
+#	visible = true
+#	if(transition == Transitions.FADE_IN):
+#		var tween : Tween = get_tree().create_tween()
+#		$ColorRect.modulate = Color(1, 1, 1, 0)
+#		tween.tween_property($ColorRect, \"modulate\", Color(1, 1, 1, 1), time)
+#		tween.set_ease(Tween.EASE_OUT_IN)
+#		tween.set_trans(Tween.TRANS_LINEAR)
+#		tween.finished.connect(Callable(func(): tween_finished(scene_path)))
+#	elif(transition == Transitions.FADE_OUT):
+#		var tween : Tween = get_tree().create_tween()
+#		$ColorRect.modulate = Color(1, 1, 1, 1)
+#		tween.tween_property($ColorRect, \"modulate\", Color(1, 1, 1, 0), time)
+#		tween.set_ease(Tween.EASE_OUT_IN)
+#		tween.set_trans(Tween.TRANS_LINEAR)
+#		tween.finished.connect(Callable(func(): tween_finished(scene_path)))
+		
+#func tween_finished(new_scene : String) -> void:
+#	visible = false
+#	get_tree().change_scene_to_file(new_scene)
+"
+
+[node name="SceneTransitioner" type="Control"]
+visible = false
+z_index = 4096
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = SubResource("GDScript_avhkv")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
