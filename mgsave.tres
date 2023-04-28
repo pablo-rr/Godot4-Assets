@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="SaveFile" load_steps=2 format=3 uid="uid://bi24h2sgj11ns"]
+
+[ext_resource type="Script" path="res://Addons/SaveSystem/SaveFile.gd" id="1_s76x4"]
+
+[resource]
+script = ExtResource("1_s76x4")
+sample = "Cambiada"

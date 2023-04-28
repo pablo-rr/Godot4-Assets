@@ -1,0 +1,22 @@
+[gd_scene load_steps=2 format=3 uid="uid://4wv68rh8t40f"]
+
+[sub_resource type="GDScript" id="GDScript_cglpv"]
+script/source = "extends Node2D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	var sf = ConfigurationFile.new()
+	print(sf.fullscreen)
+	var sr = SaveSystem.save_config(sf, false)
+	print(sr)
+	var lg = SaveSystem.load_config(false)
+	print(lg.fullscreen)
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+"
+
+[node name="Node2D" type="Node2D"]
+script = SubResource("GDScript_cglpv")
