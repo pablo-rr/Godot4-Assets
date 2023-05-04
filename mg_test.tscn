@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=3 uid="uid://covh6ux1wpab4"]
+
+[ext_resource type="Texture2D" uid="uid://bmxna7bbbuue0" path="res://Art/Light/LightGradient.png" id="1_xpqjp"]
+[ext_resource type="PackedScene" uid="uid://bydbya8uyfxjl" path="res://character_body_2d_MG.tscn" id="2_j57f4"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_w0qc7"]
+radius = 74.2428
+
+[node name="MGTest" type="Node2D"]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(502, 445)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("CircleShape2D_w0qc7")
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
+scale = Vector2(0.405, 0.405)
+texture = ExtResource("1_xpqjp")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(510, 438)
+zoom = Vector2(2.277, 2.277)
+
+[node name="GravityPivot" type="Node2D" parent="."]
+
+[node name="CharacterBody2D" parent="GravityPivot" node_paths=PackedStringArray("planet") instance=ExtResource("2_j57f4")]
+position = Vector2(503, 315)
+planet = NodePath("../../StaticBody2D")

@@ -7,7 +7,6 @@
 [ext_resource type="Texture2D" uid="uid://cy8weswimi04s" path="res://Art/asd2.png" id="8_kr55f"]
 [ext_resource type="Script" path="res://Addons/PawnFunctionality/PawnTextureProgressBar.gd" id="9_l7ctd"]
 [ext_resource type="Texture2D" uid="uid://cmb60bfkgk764" path="res://Art/Tiles-test/Tileset.png" id="9_skm1r"]
-[ext_resource type="Texture2D" uid="uid://bmxna7bbbuue0" path="res://Art/Light/LightGradient.png" id="10_n0rp8"]
 [ext_resource type="Texture2D" uid="uid://c2yg30af21qyk" path="res://icon.svg" id="10_purqq"]
 [ext_resource type="Shader" path="res://Shaders/2D/Teleporter.gdshader" id="11_ircfw"]
 [ext_resource type="Script" path="res://Addons/PawnFunctionality/DamageModulator2D.gd" id="11_wbmnw"]
@@ -212,6 +211,9 @@ _data = {
 "new_animation_2": SubResource("Animation_kfpoa")
 }
 
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_p1ltv"]
+polygon = PackedVector2Array(205, 540, 282, 540, 280, 615, 209, 614)
+
 [node name="Node2D" type="Node2D"]
 script = SubResource("GDScript_cglpv")
 
@@ -239,10 +241,10 @@ max_stamina = 200
 waste_interval = 127.335
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
-position = Vector2(315, 527)
-scale = Vector2(0.3, 0.3)
+position = Vector2(285, 556)
+scale = Vector2(0.657812, 0.657812)
 shadow_enabled = true
-texture = ExtResource("10_n0rp8")
+texture = ExtResource("10_purqq")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_7xsi1")
@@ -280,3 +282,7 @@ texture = ExtResource("10_purqq")
 libraries = {
 "": SubResource("AnimationLibrary_i5u8p")
 }
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+position = Vector2(70, 30)
+occluder = SubResource("OccluderPolygon2D_p1ltv")
