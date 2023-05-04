@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bt7dp4sl8y471"
-path="res://.godot/imported/Health.svg-956d8bb58c1d3d079ffac6aa94a5b4a6.ctex"
+uid="uid://bfgk2fr5625jc"
+path="res://.godot/imported/asd.png-c7e1af95457b2b39e068be2f6096b62a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Addons/HealthSystem/Icons/Health.svg"
-dest_files=["res://.godot/imported/Health.svg-956d8bb58c1d3d079ffac6aa94a5b4a6.ctex"]
+source_file="res://Art/asd.png"
+dest_files=["res://.godot/imported/asd.png-c7e1af95457b2b39e068be2f6096b62a.ctex"]
 
 [params]
 
@@ -32,6 +32,3 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
-svg/scale=1.0
-editor/scale_with_editor_scale=false
-editor/convert_colors_with_editor_theme=false

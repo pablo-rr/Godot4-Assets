@@ -1,6 +1,6 @@
-@icon("res://Addons/HealthSystem/Icons/HealthControl.svg")
-class_name ProgressBarHealthSystem
-extends ProgressBar
+@icon("res://Addons/PawnFunctionality/Icons/progression.svg")
+class_name PawnTextureProgressBar
+extends TextureProgressBar
 
 enum AnimationStyles{
 	BACK = Tween.TRANS_BACK
@@ -22,29 +22,47 @@ enum AnimationEases{
 	,OUT_IN = Tween.EASE_OUT_IN
 }
 
+@export_category("Progress")
 @export var progress_node : Node
+@export_enum("Health", "Stamina") var progress_type : String = "Health"
 @export_category("Animation")
 @export var animation_time : float = 0.3
 @export var yield_before_animation : float = 0.0
 @export var animation_style : int = AnimationStyles.LINEAR
 @export var animation_easing : int = AnimationEases.OUT_IN
 
-var health_system
+var progress_system
 
 func _ready() -> void:
-	if(progress_node.is_class("ProgressBarHealthSystem")):
-		health_system = progress_node
+	if(progress_node is HealthSystem or progress_node is StaminaSystem):
+		progress_system = progress_node
 	else:
-		health_system = get_health_system(progress_node)
-	
+		if(progress_type == "Health"):
+			progress_system = get_health_system(progress_node)
+		elif(progress_type == "Stamina"):
+			progress_system = get_stamina_system(progress_node)
+			
 	min_value = 0
-	max_value = health_system.max_health
-	value = health_system.health
-	health_system.health_changed.connect(Callable(self, "update_progress_bar"))
+	if(progress_type == "Health"):
+		max_value = progress_system.max_health
+		value = progress_system.max_health
+		progress_system.health_changed.connect(Callable(self, "update_progress_bar"))
+	elif(progress_type == "Stamina"):
+		max_value = progress_system.max_stamina
+		value = progress_system.max_stamina
+		progress_system.stamina_changed.connect(Callable(self, "update_progress_bar"))
 
 func get_health_system(node : Node):
 	for child in node.get_children():
 		if(child is HealthSystem):
+			return child
+	
+	return null
+	
+func get_stamina_system(node : Node):
+	for child in node.get_children():
+		print(child is StaminaSystem)
+		if(child is StaminaSystem):
 			return child
 	
 	return null

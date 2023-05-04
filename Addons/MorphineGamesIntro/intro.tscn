@@ -11,7 +11,6 @@ script/source = "extends Control
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	$AnimationPlayer.play(\"intro\")
-	SceneTransitioner.transition_to_scene(\"res://Addons/SceneTransitioner/scene_transitioner.tscn\")
 "
 
 [sub_resource type="Animation" id="Animation_u4pnd"]

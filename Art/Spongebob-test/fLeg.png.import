@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://exdy7nkftr7b"
-path="res://.godot/imported/HealthControl.svg-6663a10cd01df120f5c4b456c75449d2.ctex"
+uid="uid://byxab0m37c5yy"
+path="res://.godot/imported/fLeg.png-2088d572ed8a8f78709bd65460fe8768.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Addons/HealthSystem/Icons/HealthControl.svg"
-dest_files=["res://.godot/imported/HealthControl.svg-6663a10cd01df120f5c4b456c75449d2.ctex"]
+source_file="res://Art/Spongebob-test/fLeg.png"
+dest_files=["res://.godot/imported/fLeg.png-2088d572ed8a8f78709bd65460fe8768.ctex"]
 
 [params]
 
@@ -32,6 +32,3 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
-svg/scale=1.0
-editor/scale_with_editor_scale=false
-editor/convert_colors_with_editor_theme=false
