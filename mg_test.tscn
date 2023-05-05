@@ -1,12 +1,23 @@
-[gd_scene load_steps=4 format=3 uid="uid://covh6ux1wpab4"]
+[gd_scene load_steps=5 format=3 uid="uid://covh6ux1wpab4"]
 
 [ext_resource type="Texture2D" uid="uid://bmxna7bbbuue0" path="res://Art/Light/LightGradient.png" id="1_xpqjp"]
 [ext_resource type="PackedScene" uid="uid://bydbya8uyfxjl" path="res://character_body_2d_MG.tscn" id="2_j57f4"]
+
+[sub_resource type="GDScript" id="GDScript_ulopd"]
+script/source = "extends Node2D
+
+
+# Called when the node enters the scene tree for the first time.
+func _input(event: InputEvent) -> void:
+	if(event.is_action_pressed(\"ui_accept\")):
+		SceneTransitioner.transition(0.6, 2)
+"
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_w0qc7"]
 radius = 74.2428
 
 [node name="MGTest" type="Node2D"]
+script = SubResource("GDScript_ulopd")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 position = Vector2(502, 445)
